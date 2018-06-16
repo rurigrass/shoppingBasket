@@ -1,12 +1,16 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 public class Basket {
 
     private ArrayList<Item> basketList;
     private Item item;
+    private Customer customer;
 
     public Basket() {
         this.basketList = new ArrayList<>();
+        this.customer = new Customer(true);
     }
 
     public int countItems() {
@@ -39,11 +43,13 @@ public class Basket {
 //        for (Item item : basketList) {
 //            if (item.getBogof())  { bogofList.add(item);
 //            }
+//            Collections.sort(bogofList);
 //            for (Item item : bogofList) {
+//
+//
 //
 //            }
 //        }
-//
 //    }
 
     public double getTenPercentDiscount() {
@@ -55,5 +61,10 @@ public class Basket {
     }
 
 
-
+    public double getLoyaltyCardDiscount() {
+        double discount = this.getTotalValue() / 20.0;
+        if (customer.getLoyaltyCard() == true) {
+            return this.getTotalValue() - discount;
+        } else return  this.getTotalValue();
+    }
 }
